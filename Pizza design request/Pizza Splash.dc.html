@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  @keyframes pizzaDrop {
+    0%   { transform: translateY(-130vh) rotate(-16deg); animation-timing-function: cubic-bezier(.5,0,.85,.35); }
+    34%  { transform: translateY(0) rotate(3deg);        animation-timing-function: cubic-bezier(.12,.6,.4,1); }
+    54%  { transform: translateY(-30%) rotate(-5deg);    animation-timing-function: cubic-bezier(.5,0,.85,.35); }
+    70%  { transform: translateY(0) rotate(2deg);        animation-timing-function: cubic-bezier(.12,.6,.4,1); }
+    82%  { transform: translateY(-13%) rotate(-1deg);    animation-timing-function: cubic-bezier(.5,0,.85,.35); }
+    91%  { transform: translateY(0) rotate(1deg);        animation-timing-function: cubic-bezier(.12,.6,.4,1); }
+    96%  { transform: translateY(-4%) rotate(0deg);      animation-timing-function: cubic-bezier(.5,0,.85,.35); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+  @keyframes pizzaFloat {
+    0%   { transform: translateY(0) rotate(0deg); }
+    50%  { transform: translateY(-26px) rotate(-2deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+  @keyframes shadowDrop {
+    0%, 28% { transform: scaleX(0.2); opacity: 0; }
+    34%     { transform: scaleX(1.08); opacity: 0.55; }
+    54%     { transform: scaleX(0.7);  opacity: 0.3; }
+    70%     { transform: scaleX(1.05); opacity: 0.55; }
+    82%     { transform: scaleX(0.85); opacity: 0.4; }
+    91%     { transform: scaleX(1.02); opacity: 0.55; }
+    100%    { transform: scaleX(1);    opacity: 0.55; }
+  }
+  @keyframes shadowPulse {
+    0%   { transform: scaleX(1);    opacity: 0.55; }
+    50%  { transform: scaleX(0.82); opacity: 0.35; }
+    100% { transform: scaleX(1);    opacity: 0.55; }
+  }
+  @keyframes statementSwap {
+    0%   { opacity: 0; transform: translateY(8px); }
+    18%  { opacity: 1; transform: translateY(0); }
+    82%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+  @keyframes arcSweep {
+    0%   { transform: translateY(118%); }
+    44%  { transform: translateY(0%); }
+    56%  { transform: translateY(0%); }
+    100% { transform: translateY(-122%); }
+  }
+  @keyframes homePop {
+    0%   { opacity: 0; transform: scale(0.985); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes heroPizzaIn {
+    0%   { opacity: 0; transform: translate(-50%, calc(-50% + 40px)) scale(0.9); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+  @keyframes badgeIn {
+    0%   { opacity: 0; transform: rotate(var(--rot)) scale(0.4); }
+    70%  { opacity: 1; transform: rotate(var(--rot)) scale(1.12); }
+    100% { opacity: 1; transform: rotate(var(--rot)) scale(1); }
+  }
+</style>
+</helmet>
+<div style="position:fixed; inset:0; overflow:hidden; font-family:'Baloo 2', system-ui, sans-serif;">
+
+  <!-- ============ HOME PAGE (revealed underneath) ============ -->
+  <div style="position:absolute; inset:0; background:#f6e7d4; overflow:hidden;">
+
+    <!-- giant background word at bottom -->
+    <div style="position:absolute; left:50%; bottom:-7vh; transform:translateX(-50%); font-family:'Luckiest Guy', cursive; font-size:min(30vw, 380px); line-height:0.8; color:#ffa920; letter-spacing:4px; white-space:nowrap; z-index:0; user-select:none;">SLICE</div>
+
+    <!-- top nav -->
+    <div style="position:absolute; top:0; left:0; right:0; z-index:5; display:flex; align-items:center; justify-content:space-between; padding:clamp(18px,2.6vw,34px) clamp(22px,3.4vw,54px);">
+      <div style="font-family:'Luckiest Guy', cursive; font-size:clamp(34px,4.2vw,58px); color:#e92c2c; letter-spacing:2px; text-shadow:2px 3px 0 rgba(0,0,0,0.12);">SLICE</div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button style="font-family:'Luckiest Guy', cursive; letter-spacing:1px; font-size:clamp(15px,1.4vw,20px); color:#fff4e0; background:#e92c2c; border:none; border-radius:999px; padding:13px 28px; cursor:pointer; box-shadow:0 4px 0 #b51d1d;">PIZZAS</button>
+        <button style="font-family:'Luckiest Guy', cursive; letter-spacing:1px; font-size:clamp(15px,1.4vw,20px); color:#2a1a12; background:transparent; border:2.5px solid #2a1a12; border-radius:999px; padding:11px 26px; cursor:pointer; display:flex; align-items:center; gap:12px;">MENU
+          <span style="display:inline-flex; flex-direction:column; gap:4px;">
+            <span style="width:22px; height:3px; background:#2a1a12; border-radius:2px;"></span>
+            <span style="width:22px; height:3px; background:#2a1a12; border-radius:2px;"></span>
+            <span style="width:22px; height:3px; background:#2a1a12; border-radius:2px;"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- hero word -->
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1; font-family:'Luckiest Guy', cursive; font-size:min(23vw, 300px); line-height:0.82; color:#e92c2c; letter-spacing:2px; text-align:center; white-space:nowrap; -webkit-text-stroke:6px #fff4e0; paint-order:stroke fill; text-shadow:0 8px 0 rgba(0,0,0,0.10);">THE PIZZA</div>
+
+    <!-- hero pizza -->
+    <img src="assets/pizza.png" alt="Pizza slice" style="position:absolute; top:50%; left:50%; width:min(34vw, 380px); z-index:2; animation:heroPizzaIn 0.8s cubic-bezier(.2,.8,.3,1.2) both; filter:drop-shadow(0 24px 30px rgba(120,50,0,0.28));" />
+
+    <!-- badges -->
+    <div style="--rot:-13deg; position:absolute; top:30%; left:24%; z-index:3; font-family:'Luckiest Guy', cursive; color:#fff4e0; background:#ffa920; padding:14px 20px; border-radius:16px; text-align:center; line-height:1; font-size:clamp(15px,1.5vw,21px); box-shadow:0 6px 0 #d97e0c; transform:rotate(-13deg); animation:badgeIn 0.5s 0.5s cubic-bezier(.2,.8,.3,1.4) both;">WOOD<br>FIRED</div>
+    <div style="--rot:11deg; position:absolute; top:60%; right:21%; z-index:3; font-family:'Luckiest Guy', cursive; color:#fff4e0; background:#ffa920; padding:14px 20px; border-radius:16px; text-align:center; line-height:1; font-size:clamp(15px,1.5vw,21px); box-shadow:0 6px 0 #d97e0c; transform:rotate(11deg); animation:badgeIn 0.5s 0.66s cubic-bezier(.2,.8,.3,1.4) both;">HAND<br>TOSSED</div>
+
+    <!-- bottom copy columns -->
+    <div style="position:absolute; bottom:clamp(26px,4vh,52px); left:clamp(22px,3.4vw,54px); max-width:min(30vw, 360px); z-index:4; font-weight:600; font-size:clamp(15px,1.25vw,19px); line-height:1.35; color:#2a1a12; text-wrap:pretty;">Fired in a 900° oven, our thin crust blisters and crackles under a blanket of San Marzano sauce.</div>
+    <div style="position:absolute; bottom:clamp(26px,4vh,52px); right:clamp(22px,3.4vw,54px); max-width:min(30vw, 360px); z-index:4; text-align:right; font-weight:600; font-size:clamp(15px,1.25vw,19px); line-height:1.35; color:#2a1a12; text-wrap:pretty;">Draped in fresh mozzarella and torn basil, hand-stretched daily to feed your cravings since 1997.</div>
+
+  </div>
+
+  <!-- ============ LOADING SCREEN ============ -->
+  <sc-if value="{{ loadingMounted }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute; inset:0; z-index:10; background:#ffa920; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:{{ loadingOpacity }}; transition:opacity 0.3s ease;">
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:26px;">
+      <div style="position:relative; width:min(46vw, 460px); aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;">
+        <div style="position:absolute; bottom:6%; width:42%; height:5%; background:#e07d0e; border-radius:50%; filter:blur(2px); animation:shadowDrop 1.7s cubic-bezier(.34,1.4,.64,1) both, shadowPulse 3.4s ease-in-out 1.7s infinite;"></div>
+        <img src="assets/pizza.png" alt="Floating pizza slice" style="width:100%; height:100%; object-fit:contain; animation:pizzaDrop 1.7s linear both, pizzaFloat 3.4s ease-in-out 1.7s infinite; will-change:transform;" />
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+        <h1 style="margin:0; font-family:'Luckiest Guy', cursive; color:#fff4e0; font-size:clamp(36px, 5.2vw, 64px); letter-spacing:2px; line-height:1; text-shadow:0 4px 0 rgba(199,108,0,0.45); -webkit-text-stroke:1px rgba(160,84,0,0.25);">READY TO SLICE!</h1>
+        <div key="{{ statementKey }}" style="height:24px; display:flex; align-items:center; animation:statementSwap {{ swapDur }} ease-in-out;">
+          <span style="font-family:'Luckiest Guy', cursive; color:#9a5300; font-size:clamp(15px, 1.7vw, 20px); letter-spacing:1px;">{{ statement }}</span>
+        </div>
+        <div style="position:relative; width:min(86vw, 760px); display:flex; flex-direction:column; align-items:center; gap:8px;">
+          <div style="width:100%; height:14px; background:rgba(150,76,0,0.28); border-radius:999px; overflow:hidden; box-shadow:inset 0 1px 2px rgba(120,60,0,0.35);">
+            <div style="height:100%; width: {{ progressW }}; background:linear-gradient(90deg,#fff4e0,#ffe7b3); border-radius:999px; transition:width 0.2s ease-out;"></div>
+          </div>
+          <span style="font-family:'Luckiest Guy', cursive; color:#fff4e0; font-size:14px; letter-spacing:2px; text-shadow:0 2px 0 rgba(199,108,0,0.4);">{{ progressLabel }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ TRANSITION ARCS ============ -->
+  <sc-if value="{{ arcsMounted }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute; inset:0; z-index:20; pointer-events:none;">
+    <div style="position:absolute; bottom:0; left:-10%; width:120%; height:135vh; background:#ffa920; border-radius:46% 46% 0 0 / 20% 20% 0 0; animation:arcSweep 1.7s cubic-bezier(.7,0,.3,1) 0s both;"></div>
+    <div style="position:absolute; bottom:0; left:-10%; width:120%; height:135vh; background:#ff7a1a; border-radius:46% 46% 0 0 / 20% 20% 0 0; animation:arcSweep 1.7s cubic-bezier(.7,0,.3,1) 0.13s both;"></div>
+    <div style="position:absolute; bottom:0; left:-10%; width:120%; height:135vh; background:#e92c2c; border-radius:46% 46% 0 0 / 20% 20% 0 0; animation:arcSweep 1.7s cubic-bezier(.7,0,.3,1) 0.26s both;"></div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    progress: 0,
+    msgIndex: 0,
+    done: false,
+    loadingMounted: true,
+    loadingOpacity: 1,
+    arcsMounted: false,
+  };
+
+  messages = [
+    "Tossing the dough\u2026",
+    "Ladling the sauce\u2026",
+    "Showering the cheese\u2026",
+    "Laying the pepperoni\u2026",
+    "Firing up the oven\u2026",
+    "Crisping the crust\u2026",
+    "Boxing it up hot\u2026",
+  ];
+
+  componentDidMount() {
+    this._timers = [];
+    const startDelay = 1700;
+
+    this._startT = setTimeout(() => {
+      this._prog = setInterval(() => {
+        this.setState(s => {
+          if (s.progress >= 100) { clearInterval(this._prog); return null; }
+          const step = 4 + Math.random() * 11;
+          return { progress: Math.min(100, Math.round(s.progress + step)) };
+        });
+      }, 240);
+
+      this._msg = setInterval(() => {
+        this.setState(s => {
+          if (s.done) { clearInterval(this._msg); return null; }
+          return { msgIndex: s.msgIndex + 1 };
+        });
+      }, 1050);
+    }, startDelay);
+  }
+
+  componentDidUpdate() {
+    if (!this.state.done && this.state.progress >= 100) {
+      clearInterval(this._prog);
+      clearInterval(this._msg);
+      this.setState({ done: true });
+      this._startTransition();
+    }
+  }
+
+  _startTransition() {
+    // brief beat on 100%, then sweep the arcs up
+    this._timers.push(setTimeout(() => {
+      this.setState({ arcsMounted: true });
+    }, 650));
+    // hide the loading screen while the arcs fully cover it (~44% of 1.7s + 0.26s delay)
+    this._timers.push(setTimeout(() => {
+      this.setState({ loadingOpacity: 0 });
+    }, 650 + 900));
+    this._timers.push(setTimeout(() => {
+      this.setState({ loadingMounted: false });
+    }, 650 + 1100));
+    // arcs have exited the top \u2014 unmount the overlay
+    this._timers.push(setTimeout(() => {
+      this.setState({ arcsMounted: false });
+    }, 650 + 2050));
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._startT);
+    clearInterval(this._prog);
+    clearInterval(this._msg);
+    (this._timers || []).forEach(clearTimeout);
+  }
+
+  renderVals() {
+    const { progress, msgIndex, done } = this.state;
+    const statement = done ? "Fresh out the oven!" : this.messages[msgIndex % this.messages.length];
+    return {
+      progressW: progress + "%",
+      progressLabel: progress + "%",
+      statement,
+      statementKey: done ? "done" : "m" + (msgIndex % this.messages.length),
+      swapDur: done ? "0.4s" : "1.05s",
+      loadingMounted: this.state.loadingMounted,
+      loadingOpacity: this.state.loadingOpacity,
+      arcsMounted: this.state.arcsMounted,
+    };
+  }
+}
+</script>
+</body>
+</html>

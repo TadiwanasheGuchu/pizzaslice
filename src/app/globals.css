@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6e7d4;
+  --foreground: #2a1a12;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-baloo);
+  --font-display: var(--font-luckiest);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-baloo), system-ui, sans-serif;
+}
+
+@keyframes pizzaDrop {
+  0% {
+    transform: translateY(-130vh) rotate(-16deg);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.85, 0.35);
+  }
+  34% {
+    transform: translateY(0) rotate(3deg);
+    animation-timing-function: cubic-bezier(0.12, 0.6, 0.4, 1);
+  }
+  54% {
+    transform: translateY(-30%) rotate(-5deg);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.85, 0.35);
+  }
+  70% {
+    transform: translateY(0) rotate(2deg);
+    animation-timing-function: cubic-bezier(0.12, 0.6, 0.4, 1);
+  }
+  82% {
+    transform: translateY(-13%) rotate(-1deg);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.85, 0.35);
+  }
+  91% {
+    transform: translateY(0) rotate(1deg);
+    animation-timing-function: cubic-bezier(0.12, 0.6, 0.4, 1);
+  }
+  96% {
+    transform: translateY(-4%) rotate(0deg);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.85, 0.35);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes pizzaFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-26px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes shadowDrop {
+  0%,
+  28% {
+    transform: scaleX(0.2);
+    opacity: 0;
+  }
+  34% {
+    transform: scaleX(1.08);
+    opacity: 0.55;
+  }
+  54% {
+    transform: scaleX(0.7);
+    opacity: 0.3;
+  }
+  70% {
+    transform: scaleX(1.05);
+    opacity: 0.55;
+  }
+  82% {
+    transform: scaleX(0.85);
+    opacity: 0.4;
+  }
+  91% {
+    transform: scaleX(1.02);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes shadowPulse {
+  0% {
+    transform: scaleX(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleX(0.82);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes statementSwap {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  18% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  82% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes arcSweep {
+  0% {
+    transform: translateY(118%);
+  }
+  44% {
+    transform: translateY(0%);
+  }
+  56% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-122%);
+  }
+}
+
+@keyframes heroPizzaIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 40px)) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes badgeIn {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--rot)) scale(0.4);
+  }
+  70% {
+    opacity: 1;
+    transform: rotate(var(--rot)) scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(var(--rot)) scale(1);
+  }
 }
